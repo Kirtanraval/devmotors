@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "378806166417",
+    "project_id": "dmotors-63a3f",
+    "storage_bucket": "dmotors-63a3f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:378806166417:android:5c55afe29a30dd9e967030",
+        "android_client_info": {
+          "package_name": "com.example.dm"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvBaMvzEPq_Crn93MLTCK-t1zwAAktLek"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

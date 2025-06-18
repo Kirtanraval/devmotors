@@ -9,16 +9,21 @@ plugins {
 android {
     namespace = "com.example.dm"
     compileSdkVersion 34
-    ndkVersion = flutter.ndkVersion
+     ndkVersion = "27.0.12077973"
 
      defaultConfig {
-        minSdkVersion flutter.minSdkVersion
-        targetSdkVersion 33
+        applicationId = "com.example.dm"
+        minSdkVersion 26  // Updated to 26 as per requirement
+        targetSdkVersion 34
+        versionCode flutter.versionCode
+        versionName flutter.versionName
+        multiDexEnabled true
      }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled true
     }
 
     kotlinOptions {
@@ -37,8 +42,11 @@ android {
         versionName = flutter.versionName
     }
 
-    buildTypes {
+    buildTypes {s
         release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.debug
@@ -52,4 +60,7 @@ flutter {
 
 dependencies {
     implementation platform('com.google.firebase:firebase-bom:33.3.0')
+    // implementation 'com.android.tools:desugar_jdk_libs:1.2.2'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
 }
+

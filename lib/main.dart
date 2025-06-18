@@ -1,4 +1,5 @@
-import 'package:dm/wrapper.dart';
+import 'package:dm/splashScreen.dart';
+// import 'package:dm/wrapper.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -16,12 +17,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Dev Motors',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Wrapper(),
+      home: SplashScreen(),
     );
   }
 }

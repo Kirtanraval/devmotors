@@ -20,7 +20,7 @@ class _SignupState extends State<Signup> {
     if (email.text.isEmpty || password.text.isEmpty) {
       Get.snackbar("Error", "Please fill in all fields",
           snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.red, // Red background for error
+          backgroundColor: Colors.red,
           colorText: Colors.white);
       return;
     }
@@ -52,7 +52,7 @@ class _SignupState extends State<Signup> {
       );
       Get.snackbar("Success", "Account created successfully",
           snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.green, // Green for success
+          backgroundColor: Colors.green,
           colorText: Colors.white);
       Get.offAll(() => const Wrapper()); // Navigate to Wrapper after signup
     } on FirebaseAuthException catch (e) {
@@ -88,32 +88,90 @@ class _SignupState extends State<Signup> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Sign up"),
+        title: const Text("Sign up", style: TextStyle(color: Colors.white)),
+        backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+        iconTheme: const IconThemeData(
+            color: Colors.white), // Set back arrow color to white
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            TextField(
-              controller: email,
-              decoration: const InputDecoration(hintText: 'Enter Email'),
-              keyboardType: TextInputType.emailAddress,
-            ),
-            const SizedBox(height: 20),
-            TextField(
-              controller: password,
-              decoration: const InputDecoration(hintText: 'Enter Password'),
-              obscureText: true, // Hides password input
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: signup,
-              child: isLoading
-                  ? const CircularProgressIndicator(color: Colors.white)
-                  : const Text("Sign up"),
-            ),
-          ],
+      body: Container(
+        width: double.infinity, // Make container full screen
+        height: double.infinity, // Make container full screen
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color.fromARGB(255, 255, 255, 255), // Start color (white)
+              Color.fromARGB(255, 254, 216, 186), // End color (light orange)
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(height: 40),
+              const Text(
+                "Create a New Account !",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 24,
+                  color: Color.fromARGB(255, 0, 0, 0),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                controller: email,
+                decoration: InputDecoration(
+                  hintText: 'Enter Email',
+                  filled: true,
+                  fillColor: const Color.fromARGB(255, 187, 185, 173),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
+                  ),
+                ),
+                keyboardType: TextInputType.emailAddress,
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                controller: password,
+                decoration: InputDecoration(
+                  hintText: 'Enter Password',
+                  filled: true,
+                  fillColor: const Color.fromARGB(255, 187, 185, 173),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
+                  ),
+                ),
+                obscureText: true,
+              ),
+              const SizedBox(height: 40),
+              ElevatedButton(
+                onPressed: signup,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(
+                      255, 0, 0, 0), // Button background color set to white
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                ),
+                child: isLoading
+                    ? const CircularProgressIndicator(color: Colors.orange)
+                    : const Text(
+                        "Sign up",
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Color.fromARGB(255, 255, 255,
+                                255)), // Button text color set to white
+                      ),
+              ),
+            ],
+          ),
         ),
       ),
     );

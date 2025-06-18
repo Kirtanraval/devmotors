@@ -32,7 +32,7 @@ class _WrapperState extends State<Wrapper> {
             }
 
             // If the user is logged in and their email is verified, go to Homepage
-            return const Homepage();
+            return HomeScreen();
           }
 
           // Show a loading spinner while waiting for Firebase auth state

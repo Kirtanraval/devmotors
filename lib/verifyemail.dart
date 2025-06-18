@@ -20,9 +20,14 @@ class _VerifyState extends State<Verify> {
   sendverifylink() async {
     final user = FirebaseAuth.instance.currentUser!;
     await user.sendEmailVerification().then((value) => {
-          Get.snackbar('Link sent', 'A link has been sent to your email',
-              margin: const EdgeInsets.all(30),
-              snackPosition: SnackPosition.BOTTOM)
+          Get.snackbar(
+            'Link Sent',
+            'A verification link has been sent to your email.',
+            margin: const EdgeInsets.all(30),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.green,
+            colorText: Colors.white,
+          )
         });
   }
 
@@ -36,18 +41,41 @@ class _VerifyState extends State<Verify> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Verification'),
+        title: const Text('Email Verification'),
+        backgroundColor: Colors.orangeAccent, // Matching theme color
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(28.0),
+      body: Padding(
+        padding: const EdgeInsets.all(28.0),
         child: Center(
-          child: Text(
-              'Open your mail and click the link provided to your email & Reload this page.'),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                'Please check your email and click the link to verify your account.',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16, color: Colors.black54),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: sendverifylink,
+                child: const Text("Resend Verification Link"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orange, // Button color matching theme
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  textStyle: const TextStyle(fontSize: 16),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (() => reload()),
+        onPressed: reload,
         child: const Icon(Icons.restart_alt_rounded),
+        backgroundColor: Colors.orangeAccent, // Floating action button color
       ),
     );
   }
